@@ -1,0 +1,6 @@
+E:\Mod_Study\PEAK\Peak_Project\obj\Debug\Peak_Project.csproj.AssemblyReference.cache
+E:\Mod_Study\PEAK\Peak_Project\obj\Debug\Peak_Project.csproj.CoreCompileInputs.cache
+E:\Mod_Study\PEAK\Peak_Project\bin\Debug\Peak_Project.dll
+E:\Mod_Study\PEAK\Peak_Project\bin\Debug\Peak_Project.pdb
+E:\Mod_Study\PEAK\Peak_Project\obj\Debug\Peak_Project.dll
+E:\Mod_Study\PEAK\Peak_Project\obj\Debug\Peak_Project.pdb
