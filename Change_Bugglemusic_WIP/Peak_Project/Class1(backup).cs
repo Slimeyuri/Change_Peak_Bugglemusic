@@ -11,37 +11,37 @@ using UnityEngine.Networking;
 
 namespace Peak_Project
 {
-    [BepInPlugin("Change_Bugglemusic_SlimeYuri", "Change_Bugglemusic", "0.1")]
+    [BepInPlugin("CustomBugle_SlimeYuri", "CustomBugle", "1.0.1")]
     //[BepInDependency("com.bepines.plugin.important")]
     [BepInProcess("PEAK.exe")]
     public class Peak_Project : BaseUnityPlugin
     {
         private void Awake()
         {
-            base.Logger.LogInfo("[Change_Bugglemusic] 启动中");
+            base.Logger.LogInfo("[CustomBugle] 启动中");
             Logger.LogInfo("BepInEx:HelloWorld");
-            Harmony harmony = new Harmony("Change_Bugglemusic_SlimeYuri");
+            Harmony harmony = new Harmony("CustomBugle_SlimeYuri");
             Type type = AccessTools.TypeByName("BugleSFX");
             if (type == null)
             {
-                base.Logger.LogError("[Change_Bugglemusic] 没有找到音频文件SFX!");
+                base.Logger.LogError("[CustomBugle] 没有找到音频文件SFX!");
                 return;
             }
             MethodInfo method = type.GetMethod("Update", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             MethodInfo methodInfo = AccessTools.Method(typeof(Peak_Project), "UpdatePostfix", null, null);
             if (method == null || methodInfo == null)
             {
-                base.Logger.LogError("[Change_Bugglemusic] 没有找到补丁运行方法");
+                base.Logger.LogError("[CustomBugle] 没有找到补丁运行方法");
                 return;
             }
             harmony.Patch(method, null, new HarmonyMethod(methodInfo), null, null, null);
-            base.Logger.LogInfo("[Change_Bugglemusic] Harmony patch 成功运行");
+            base.Logger.LogInfo("[CustomBugle] Harmony patch 成功运行");
             LoadCustomClips(); // 启动异步加载
         }
 
         private void LoadCustomClips()
         {
-            string dirPath = Path.Combine(Paths.PluginPath, "Change_Bugglemusic");
+            string dirPath = Path.Combine(Paths.PluginPath, "Slime_Silly-CustomBugle/MusicList");
             var files = Directory.GetFiles(dirPath);
             int index = 0;
             foreach (var filePath in files)
@@ -74,7 +74,7 @@ namespace Peak_Project
                     break;
                 // 其他支持格式，可以继续添加
                 default:
-                    base.Logger.LogWarning($"[Change_Bugglemusic] 不支持的文件格式: {extension}");
+                    base.Logger.LogWarning($"[CustomBugle] 不支持的文件格式: {extension}");
                     yield break;
             }
 
@@ -85,7 +85,7 @@ namespace Peak_Project
                 if (uwr.result == UnityWebRequest.Result.ConnectionError ||
                     uwr.result == UnityWebRequest.Result.ProtocolError)
                 {
-                    base.Logger.LogError($"[Change_Bugglemusic] 加载失败: {filePath}, Error: {uwr.error}");
+                    base.Logger.LogError($"[CustomBugle] 加载失败: {filePath}, Error: {uwr.error}");
                 }
                 else
                 {
@@ -93,11 +93,11 @@ namespace Peak_Project
                     if (clip != null)
                     {
                         customBugleClips[index] = clip;
-                        base.Logger.LogInfo($"[Change_Bugglemusic] 成功加载: {filePath}");
+                        base.Logger.LogInfo($"[CustomBugle] 成功加载: {filePath}");
                     }
                     else
                     {
-                        base.Logger.LogError($"[Change_Bugglemusic] 音频解码失败: {filePath}");
+                        base.Logger.LogError($"[CustomBugle] 音频解码失败: {filePath}");
                     }
                 }
             }
