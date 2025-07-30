@@ -1,0 +1,8 @@
+{
+ "name": "CustomBugle",
+ "version_number": "1.0.1",
+ "website_url": "https://github.com/Slimeyuri/Change_Peak_Bugglemusic",
+ "description": "这个模组可以随意的用ogg,wav,ma3文件替换喇叭的音效;This mod allows you to freely replace the speaker's sound effects with OGG, WAV, and MP3 files. by_SlimeYuri",
+ "dependencies": 
+  [ "BepInEx-BepInExPack-5.4.2403" ]
+}
